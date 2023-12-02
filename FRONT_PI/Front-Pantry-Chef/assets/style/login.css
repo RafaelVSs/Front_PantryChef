@@ -1,0 +1,44 @@
+body {
+  background-color: #FF9200;
+}
+
+#cardcadastro {
+  background-color: fafafa;
+  width: 50vw;
+  margin-top: 5%;
+  border: none;
+  text-align: center;
+}
+#button-back {
+  border: none;
+  background-color: fafafa;
+  width: 8%;
+}
+#button-back img {
+  height: 50%;
+  opacity: 0.2;
+}
+#div-home, #container-home {
+  margin-top: 10%;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.div-button {
+  display: flex;
+  flex-direction: row;
+}
+
+#text-cadastro {
+  text-align: center;
+  width: 85%;
+}
+
+.submit-cadastro {
+  background-color: #FF9200;
+  color: #fafafa;
+  border: none;      
+  width: 200px; 
+  height: 50px;
+  border-radius: 8px;
+}

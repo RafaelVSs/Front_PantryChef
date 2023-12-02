@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+nav {
+    background-color: #484848;
+}
+
+.navbutton {
+    margin: 0 10px;
+}
+
+.main-section {
+    margin-top: 5%;
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card {
+    background-color: #FF9200;
+    height: 63%;
+    width: 70%;
+    gap: 2%;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilos específicos para o formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100;
+    padding: 12px;
+    margin-bottom: 5%;
+}
+
+div{
+    width: 100%;
+}
+
+button {
+    background-color: #484848;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #333333;
+}
