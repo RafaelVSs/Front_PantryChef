@@ -24,7 +24,7 @@
         <div class="search-item">
             <input type="text" placeholder="teste" name="search-item" id="input-items" class="input-search">
         </div>
-        <div class="card">
+        <div class="card"  id="receitas-container">
             <h1 class="card-food-title">TESTE</h1>
             <div class="food-section">   
                 <div class="card-food">
@@ -51,5 +51,47 @@
             </div>
         </div>
     </section>
+
+    <script>
+        // Quando a página carregar, faça a requisição e exiba as receitas
+        window.onload = async function () {
+    try {
+        const response = await fetch('http://localhost:3333/todasReceitas');
+        const data = await response.json();
+        
+        // Limpa o container de receitas
+        const receitasContainer = document.getElementById('receitas-container');
+        receitasContainer.innerHTML = '';
+
+        // Adiciona cada receita ao container
+        data.forEach(receita => {
+            receitasContainer.innerHTML += `
+                <div class="card-food">
+                    <h1 class="card-food-title">${receita.NomeReceita}</h1>
+                    <div class="food-section">   
+                        <div class="card-food-content">
+                            <div class="card-food-text">
+                                <p>${receita.NomeReceita}</p>
+                            </div>
+                            <div id="container">
+                                <section id="accordion">
+                                    <div>
+                                        <input type="checkbox" id="check-${receita.id_receita}" />
+                                        <label for="check-${receita.id_receita}">${receita.NomeReceita}</label>
+                                        <article>
+                                            <p>${receita.ModoPreparo}</p>
+                                        </article>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+        });
+    } catch (error) {
+        console.error('Erro ao obter as receitas:', error);
+    }
+};
+    </script>
 </body>
 </html>
