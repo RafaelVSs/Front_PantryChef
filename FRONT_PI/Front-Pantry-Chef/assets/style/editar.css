@@ -6,15 +6,22 @@ body {
 
 nav {
     background-color: #484848;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 5% 0 5%;
 }
 
-.navbutton {
-    margin: 0 10px;
+.navbutton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .main-section {
-    margin-top: 5%;
-    height: 90vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -24,8 +31,6 @@ nav {
 
 .card {
     background-color: #FF9200;
-    height: 63%;
-    width: 70%;
     gap: 2%;
     border-radius: 16px;
     padding: 20px;
@@ -44,16 +49,15 @@ label {
 }
 
 input {
-    width: 100;
-    padding: 12px;
-    margin-bottom: 5%;
+    width: 80%;
+    margin-bottom: 5%;;
 }
 
 div{
     width: 100%;
 }
 
-button {
+.btn-cad {
     background-color: #484848;
     color: #ffffff;
     padding: 10px 20px;
@@ -62,6 +66,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.btn-cad:hover {
     background-color: #333333;
 }

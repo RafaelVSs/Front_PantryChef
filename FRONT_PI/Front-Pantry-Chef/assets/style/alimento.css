@@ -5,6 +5,30 @@ body {
 
 }
 
+body {
+  --sb-track-color: #424242;
+  --sb-thumb-color: #f6f6f6;
+  --sb-size: 5px;
+
+  scrollbar-color: var(--sb-thumb-color) 
+                   var(--sb-track-color);
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size) 
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 32px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 32px;
+  
+  }
+
 nav {
     background-color: #484848;
     height: 10vh;
@@ -26,12 +50,10 @@ nav {
 
 .card {
     background-color: #FF9200;
-    height: 100%;
-    width: 70%;
-    gap: 2%;
+    height: 70vh;
+    width: 80%;
+    padding: 1%;
     border-radius: 16px;
-    padding-bottom: 1%;
-    text-align: center;
 }
 
 .food-section {
@@ -41,17 +63,22 @@ nav {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 
 .card-food {
     background-color: #fafafa;
-    height: 14vh;
+    min-height: 14vh;
     width: 95%;
     border-radius: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-left: 2.5%;
+    margin-top: 5%;
+}
+#receitas-container{
+    overflow-y: scroll;
+    max-height: 100%;
 }
 
 .card-food-content {
@@ -92,6 +119,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 20vh;
 }
 
 .input-search {
@@ -104,258 +132,18 @@ nav {
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 
+.btn-food {
+  padding: 40% 60% 40% 60%;
+  background-color: #484848;
+  border: none;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f6f6f6;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
 
-
-#checklist {
-    --background: #ffffff;
-    --text: #414856;
-    --check: #4F29F0;
-    --disabled: #C3C8DE;
-    --width: 20%;
-    --height: 20px;
-    --border-radius: 10px;
-    background: var(--background);
-    width: var(--width);
-    height: var(--height);
-    border-radius: var(--border-radius);
-    position: relative;
-    box-shadow: 0 10px 30px rgba(#414856, 0.05);
-    padding: 5px;
-    display: grid;
-    grid-template-columns: 30px auto;
-    align-items: center;
-    label {
-      color: var(--text);
-      position: relative;
-      cursor: pointer;
-      display: grid;
-      align-items: center;
-      width: fit-content;
-      transition: color .3s ease;
-      &::before,
-      &::after {
-        content:"";
-        position: absolute;
-      }
-      &::before {
-        height: 2px;
-        width: 8px;
-        left: -27px;
-        background: var(--check);
-        border-radius: 2px;
-        transition: background .3s ease; 
-      }
-      &:after {
-        height: 4px;
-        width: 4px;
-        top: 8px;
-        left: -25px;
-        border-radius: 50%;
-      }
-    }
-    input[type="checkbox"] {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      position: relative;
-      height: 15px;
-      width: 15px;
-      outline: none;
-      border: 0;
-      margin: 0 15px 0 0;
-      cursor: pointer;
-      background: var(--background);
-      display: grid;
-      align-items: center;
-      &::before,
-      &::after {
-        content:"";
-        position: absolute;
-        height: 2px;
-        top: auto;
-        background: var(--check);
-        border-radius: 2px;
-      }
-      &::before {
-        width: 0px;
-        right: 60%;
-        transform-origin: right bottom;
-      }
-      &::after {
-        width: 0px;
-        left: 40%;
-        transform-origin: left bottom;
-      }
-      &:checked {
-        &::before {
-          animation: check-01 .4s ease forwards;
-        }
-        &::after {
-          animation: check-02 .4s ease forwards;
-        }
-        + label {
-          color: var(--disabled);
-          animation: move .3s ease .1s forwards;
-          &::before {
-            background: var(--disabled);
-            animation: slice .4s ease forwards;
-          }
-          &::after {
-            animation: firework .5s ease forwards .1s;
-          }
-        }
-      }
-    }
-  }
-  
-  @keyframes move {
-    50% {
-      padding-left: 8px;
-      padding-right: 0px;
-    }
-    100% {
-      padding-right: 4px;
-    }
-  }
-  @keyframes slice {
-    60% {
-      width: 100%;
-      left: 4px;
-    }
-    100% {
-      width: 100%;
-      left: -2px;
-      padding-left: 0;
-    }
-  }
-  @keyframes check-01 {
-    0% {
-      width: 4px;
-      top: auto;
-      transform: rotate(0);
-    }
-    50% {
-      width: 0px;
-      top: auto;
-      transform: rotate(0);
-    }
-    51% {
-      width: 0px;
-      top: 8px;
-      transform: rotate(45deg);
-    }
-    100% {
-      width: 5px;
-      top: 8px;
-      transform: rotate(45deg);
-    }
-  }
-  @keyframes check-02 {
-    0% {
-      width: 4px;
-      top: auto;
-      transform: rotate(0);
-    }
-    50% {
-      width: 0px;
-      top: auto;
-      transform: rotate(0);
-    }
-    51% {
-      width: 0px;
-      top: 8px;
-      transform: rotate(-45deg);
-    }
-    100% {
-      width: 10px;
-      top: 8px;
-      transform: rotate(-45deg);
-    }
-  }
-  @keyframes firework {
-    0% {
-      opacity: 1;
-      box-shadow: 0 0 0 -2px #4F29F0, 0 0 0 -2px #4F29F0, 0 0 0 -2px #4F29F0, 0 0 0 -2px #4F29F0, 0 0 0 -2px #4F29F0, 0 0 0 -2px #4F29F0;
-    }
-    30% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-      box-shadow: 0 -15px 0 0px #4F29F0, 14px -8px 0 0px #4F29F0, 14px 8px 0 0px #4F29F0, 0 15px 0 0px #4F29F0, -14px 8px 0 0px #4F29F0, -14px -8px 0 0px #4F29F0;
-    }
-  }
-  
-  
-  body {
-    .socials {
-      position: fixed;
-      display: block;
-      left: 20px;
-      bottom: 20px;
-      > a {
-        display: block;
-        width: 30px;
-        opacity: .2;
-        transform: scale(var(--scale, .8));
-        transition: transform .3s cubic-bezier(0.38,-0.12, 0.24, 1.91);
-        &:hover {
-          --scale: 1;
-        }
-      }
-    }
-  }
-
-  h1, h2 {
-    margin: 1em 0 0 0;
-    text-align: center;
-  }
-  h2 {
-    margin: 0 0 1em 0;
-  }
-  #container {
-      margin: 0 auto;
-      width: 50%;
-  }
-  #accordion input {
-    display: none;
-  }
-  #accordion label {
-    background: #424242;
-    border-radius: .25em;
-    cursor: pointer;
-    display: block;
-    margin-bottom: .125em;
-    padding: .25em 1em;
-    z-index: 20;
-    color: white;
-
-  }
-  #accordion label:hover {
-    background: #323232;
-  }
-  
-  #accordion input:checked + label {
-    background: #424242;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    color: white;
-    margin-bottom: 0;
-  }
-  #accordion article {
-    background: #323232;
-    color: white;
-
-    height:0px;
-    overflow:hidden;
-    z-index:10;
-  }
-  #accordion article p {
-    padding: 1em;
-  }
-  
-  #accordion input:checked ~ article {
-    border-bottom-left-radius: .25em;
-    border-bottom-right-radius: .25em;
-    height: auto;
-    margin-bottom: .125em;
-  }
+.swal-edit h1{
+    font-weight: bolder;
+}

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./../assets/style/alimento.css">
     <script src="https://kit.fontawesome.com/26c01c2bcf.js" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>PantryChef</title>
 </head>
 <body>
@@ -22,76 +22,79 @@
       </nav>
     <section class="main-section">
         <div class="search-item">
-            <input type="text" placeholder="teste" name="search-item" id="input-items" class="input-search">
+          <input type="text" placeholder="teste" name="search-item" id="input-items" class="input-search">
         </div>
-        <div class="card"  id="receitas-container">
-            <h1 class="card-food-title">TESTE</h1>
-            <div class="food-section">   
-                <div class="card-food">
-                    <div class="card-food-content">
-                        <div class="card-food-text">
-                            <p>Nome Receita</p>
-                        </div>
-                        <body>
-                            <div id="container">
-                                <section id="accordion">
-                                    <div>
-                                        <input type="checkbox" id="check-1" />
-                                        <label for="check-1">Receita 1</label>
-                                        <article>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, odit, quia hic ipsam laboriosam dignissimos suscipit eligendi! Aspernatur, ad, suscipit officiis repellat consequuntur quod quibusdam sint nobis magnam voluptates veritatis?</p>
-                                        </article>
-                                    </div>
-                                </section>
-                          </div>
-                        </body>
-                    </div>
-                </div>
-                <!-- voce vai ter que gerar varios desses card-food-content  e mudar os dados que estão sendo passados pra ele -->
-            </div>
+        <div class="card d-flex justify-content-center">
+          <div id="receitas-container"></div>
         </div>
     </section>
-
     <script>
+        // Função para controlar a visibilidade do conteúdo do accordion
         // Quando a página carregar, faça a requisição e exiba as receitas
         window.onload = async function () {
-    try {
-        const response = await fetch('http://localhost:3333/todasReceitas');
-        const data = await response.json();
-        
-        // Limpa o container de receitas
-        const receitasContainer = document.getElementById('receitas-container');
-        receitasContainer.innerHTML = '';
-
-        // Adiciona cada receita ao container
-        data.forEach(receita => {
-            receitasContainer.innerHTML += `
-                <div class="card-food">
-                    <h1 class="card-food-title">${receita.NomeReceita}</h1>
-                    <div class="food-section">   
-                        <div class="card-food-content">
-                            <div class="card-food-text">
-                                <p>${receita.NomeReceita}</p>
-                            </div>
-                            <div id="container">
-                                <section id="accordion">
-                                    <div>
-                                        <input type="checkbox" id="check-${receita.id_receita}" />
-                                        <label for="check-${receita.id_receita}">${receita.NomeReceita}</label>
-                                        <article>
-                                            <p>${receita.ModoPreparo}</p>
-                                        </article>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
+          try {
+            const response = await fetch('http://localhost:3333/todasReceitas');
+            const data = await response.json();
+    
+            // Limpa o container de receitas
+            const receitasContainer = document.getElementById('receitas-container');
+            receitasContainer.innerHTML = '';
+    
+            // Adiciona cada receita ao container
+            data.forEach(receita => {
+              const card = document.createElement('div');
+              card.classList.add('card-food');
+    
+              card.innerHTML = `
+                <div class="food-section">
+                  <div class="card-food-content">
+                    <div class="card-food-text">
+                      <p>${receita.NomeReceita}</p>
                     </div>
+                    <div id="container${receita.id_receita}">
+                        <button class="btn-food" onclick="abrirReceita(${receita.id_receita},'${receita.NomeReceita}','${receita.ModoPreparo}','${receita.IngredientesSeparados}')"><i class="fa-solid fa-eye" style="color: #ffffff;"></i></button>
+                    </div>
+                  </div>
                 </div>`;
-        });
-    } catch (error) {
-        console.error('Erro ao obter as receitas:', error);
-    }
-};
-    </script>
+    
+              receitasContainer.appendChild(card);
+            });
+          } catch (error) {
+            console.error('Erro ao obter as receitas:', error);
+          }
+        };
+
+        function abrirReceita(id,nome,preparo,ingrediente) {
+            Swal.fire({
+              html: `
+              <div class="recipe-details">
+                  <div class="section">
+                      <h1>Preparo</h1>
+                      <p>${preparo}</p>
+                  </div>
+                  <div class="section">
+                      <h1>Ingredientes</h1>
+                      <ul>${formatIngredients(ingrediente)}</ul>
+                  </div>
+              </div>
+            `,
+            confirmButtonText: 'OK',
+            title: `Receita de ${nome}`,
+            width: '50vw',
+            height: '70vh',
+            buttonsStyling: false,
+            customClass: {
+                confirmButton: 'btn-food',
+                html: 'swal-edit'
+            }
+            });
+        }
+
+        function formatIngredients(ingredients) {
+          const ingredientList = ingredients.split(' -').map(ingredient => `<li>${ingredient.trim()}</li>`).join('');
+          return ingredientList;
+        }
+
+      </script>
 </body>
 </html>
