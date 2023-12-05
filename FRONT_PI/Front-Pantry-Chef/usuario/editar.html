@@ -15,52 +15,53 @@
         <div class="navbutton"><a href="./../receitas/index.html" class="p-3 text-light"><i class="fa-solid fa-book" style="color: #ffffff;"></i></a></div> 
         <div class="navbutton d-flex justify-content-center align-items-center">
             <a href="./../usuario/index.html" class="p-2 text-light rounded-circle">
-              <img src="./assets/img/lance-reis-tyec1pFjaGU-unsplash.jpg" height="45px" width="45px" alt="" class="rounded-circle">
+              <!-- <img src="./assets/img/lance-reis-tyec1pFjaGU-unsplash.jpg" height="45px" width="45px" alt="" class="rounded-circle"> -->
             </a>
         </div>
       </nav>
     <section class="main-section">
         <div class="card">
             <h3>Editar Perfil</h3>
-            <form id="editProfileForm" onsubmit="submitForm(event)">
+            <form id="editProfileForm" onsubmit="submitFormEdit(event)" method="post">
                 <!-- Campos de edição de perfil aqui -->
-                <div>
-                    <label for="nome">Nome:</label>
-                    <input class="form-control" type="text" id="nome" name="nome" required>
-                </div>
-                <div>
-                    <label for="email">Email:</label>
-                    <input class="form-control" type="email" id="email" name="email" required>
-                </div>
-                <div>
-                    <label for="telefone">Telefone:</label>
-                    <input class="form-control" type="number" id="telefone" name="fone" required>
-                </div>
-                <div>
-                    <label for="data_nascimento">Data de Nascimento:</label>
-                    <input class="form-control" type="date" id="data_nascimento" name="data_nascimento" required>
-                </div>
-                <!-- Botão de enviar o formulário -->
-                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="nome" id="nome" placeholder="name@example.com">
+                    <label for="nome">Nome</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+                    <label for="email">Email</label>
+                  </div>        
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" name="senha" id="senha" placeholder="Password">
+                    <label for="senha">Senha</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" name="testeSenha" id="testeSenha" placeholder="Password">
+                    <label for="senha">Repita sua senha</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="date" class="form-control" name="data_nascimento" id="data_nascimento" placeholder="name@example.com">
+                    <label for="data_nascimento">Data de Nascimento</label>
+                  </div>        
+                  <div class="form-floating mb-3">
+                    <input type="number" class="form-control" name="telefone" id="telefone" placeholder="name@example.com">
+                    <label for="telefone">Telefone</label>
+                  </div>        
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="endereco" id="endereco" placeholder="name@example.com">
+                    <label for="endereco">Endereco</label>
+                  </div>
+                  <div class="d-flex justify-content-center align-items-center">
+                    <button type="submit" class="submit-editar">Editar</button>
+                  </div>
+                  <div class="d-flex justify-content-center align-items-center">
+                    <button type="submit" class="Delet user">Excluir</button>
+                  </div>
             </form>
         </div>
     </section>
 
-    <script>
-        function submitForm(event) {
-            event.preventDefault(); // Impede o envio padrão do formulário
-
-            // Aqui você irá adicionar a lógica para enviar os dados do formulário
-            // Por exemplo, usando fetch() ou axios para enviar uma requisição ao servidor
-
-            // Simulando um envio bem-sucedido (você precisa substituir isso pelo seu código real)
-            setTimeout(() => {
-                alert('Perfil atualizado com sucesso!');
-                // Redirecionando de volta à página anterior
-                window.history.back();
-            }, 1000); // Tempo de simulação de envio (1 segundo)
-        }
-    </script>
-<script src="seu-script-javascript.js"></script>
 </body>
 </html>
+<script defer src="../assets/scripts/usuario/editar.js"></script>
